@@ -1,0 +1,19 @@
+{
+  "name": "cx-core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app-cx-core.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ossmcloud/cx.core.v0.git"
+  },
+  "author": "peppo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ossmcloud/cx.core.v0/issues"
+  },
+  "homepage": "https://github.com/ossmcloud/cx.core.v0#readme"
+}
