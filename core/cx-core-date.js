@@ -39,12 +39,27 @@ class TimeSpan {
 
     toString() {
         if (this.minutes < 1) {
-            return this.seconds.toFixed(0) + ' seconds ago...';
-        } else {
+            return this.seconds.toFixed(0) + 's';
+        } else if (this.minutes < 60) {
             var m = Math.floor(this.minutes);
             var s = this.seconds - (m * 60);
             if (s >= 60) { s = 0; m += 1; }
-            return m.toFixed(0) + ' minutes and ' + s.toFixed(0) + ' seconds ago...';
+            return m.toFixed(0) + 'm ' + s.toFixed(0) + 's';
+        } else if (this.hours < 24) {
+            var h = Math.floor(this.hours);
+            var m = this.minutes - (h * 60);
+            var s = this.seconds - (h * 60 * 60);
+            if (s >= 60) { s = 0; m += 1; }
+            return h.toFixed(0) + 'h ' + m.toFixed(0) + 'm ' + s.toFixed(0) + 's';
+        } else if (this.days < 8) {
+            var d = Math.floor(this.days);
+            var h = this.hours - (d * 24);
+            var m = this.minutes - (d * 24 * 60);
+            var s = this.seconds - (d * 24 * 60 * 60);
+            if (s >= 60) { s = 0; m += 1; }
+            return d.toFixed(0) + 'd ' + h.toFixed(0) + 'h ' + m.toFixed(0) + 'm ' + s.toFixed(0) + 's';
+        } else {
+            return 'over ' + Math.floor(this.days).toFixed(0) + ' days';
         }
     }
 

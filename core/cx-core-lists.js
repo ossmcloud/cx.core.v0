@@ -1,5 +1,10 @@
 'use strict'
 
+function isEmpty(object) {
+    if (object == null || object === undefined) { return true; }
+    if (JSON.stringify(object) === '{}') { return true; }
+    return false;
+}
 
 function toArray(object) {
     if (isEmpty(object)) { return []; }
