@@ -61,7 +61,7 @@ class TimeSpan {
         } else {
             return 'over ' + Math.floor(this.days).toFixed(0) + ' days';
         }
-    }
+    }   
 
 
 }
