@@ -204,7 +204,9 @@ module.exports = {
 }
 
 
-
+Date.prototype.dropTime = function () {
+    this.setHours(0, 0, 0, 0);
+}
 Date.prototype.addMinutes = function (minsCount) {
     var value = this.getTime();
     value += (minsCount * 60000);
