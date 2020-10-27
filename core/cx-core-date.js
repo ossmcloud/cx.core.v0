@@ -135,7 +135,7 @@ function TimeSpan(milliseconds) {
 
 function _format(options) {
     if (options === null || options == undefined) { options = {}; }
-    if (typeof options === 'date') { options.date = options; }
+    if (options.constructor.name === 'Date') { options.date = options; }
     if (!options.date) { options.date = new Date(); }
     options.d = options.date;
     if (options.dateSep === undefined || options.dateSep === null) { options.dateSep = '-'; }
