@@ -203,7 +203,9 @@ module.exports = {
     TimeSpan: TimeSpan
 }
 
-
+Date.prototype.hasTime = function () {
+    return ((this.getHours() + this.getMinutes() + this.getSeconds() + this.getMilliseconds()) > 0);
+}
 Date.prototype.dropTime = function () {
     this.setHours(0, 0, 0, 0);
 }
