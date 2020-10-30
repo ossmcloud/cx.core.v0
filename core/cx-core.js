@@ -40,6 +40,7 @@ function getAllKeys(obj, depth) {
 }
 
 function bufferToString(buf) {
+    if (!buf) { return ''; }
     return `0x${buf.toString('hex')}`
 }
 

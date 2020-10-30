@@ -179,6 +179,7 @@ function _formatEx(options) {
 }
 
 
+
 function _parse(options) {
     // TODO:
     var dateParts = options.split('-');
@@ -204,7 +205,8 @@ module.exports = {
 }
 
 Date.prototype.hasTime = function () {
-    return ((this.getHours() + this.getMinutes() + this.getSeconds() + this.getMilliseconds()) > 0);
+    var t = ((this.getHours() + this.getMinutes() + this.getSeconds() + this.getMilliseconds()));
+    return (t != 0 && t != 1);
 }
 Date.prototype.dropTime = function () {
     this.setHours(0, 0, 0, 0);
