@@ -22,12 +22,9 @@ function bytesToString(bytes) {
 
 
 module.exports = {
-
     trimRight: trimRight,
-
     decodeBase64String: decodeBase64String,
     bytesToString: bytesToString,
-
 }
 
 String.prototype.replaceAll = function (search, replacement) {
