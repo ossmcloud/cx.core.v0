@@ -8,6 +8,18 @@ class CxError extends Error {
     get cxError() { return true; }
 }
 
+class CxNullArgError extends CxError {
+    #argName = null;
+    constructor(argName) {
+        super(`argument ${argName} cannot be null`);
+    }
+
+    get argName() {
+        return this.#argName;
+    }
+}
+
 module.exports = {
-    CxError: CxError
+    CxError: CxError,
+    CxNullArgError: CxNullArgError,
 };
