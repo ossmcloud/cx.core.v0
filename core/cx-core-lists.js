@@ -42,10 +42,18 @@ function sortArray(array, fieldName, isString, descending) {
     });
 }
 
-function each(iterable, callback) {
+function each(iterable, callback, t) {
     if (!callback) { return; }
     for (var eachIdx = 0; eachIdx < iterable.length; eachIdx++) {
-        var response = callback(iterable[eachIdx], eachIdx);
+        var response = callback(iterable[eachIdx], eachIdx, t);
+        if (response !== undefined && !response) { break; }
+    }
+}
+
+function eachEx(t, iterable, callback) {
+    if (!callback) { return; }
+    for (var eachIdx = 0; eachIdx < iterable.length; eachIdx++) {
+        var response = callback(iterable[eachIdx], eachIdx, t);
         if (response !== undefined && !response) { break; }
     }
 }
@@ -68,6 +76,7 @@ function eachProp(object, callback) {
 
 module.exports = {
     each: each,
+    eachEx: eachEx,
     eachProp: eachProp,
 
     toArray: toArray,
