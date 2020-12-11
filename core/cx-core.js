@@ -1,7 +1,7 @@
 'use strict'
 
 function isLive() {
-    // TODO: find better way to define if live 
+    // @REVIEW: find better way to define if live 
     return process.env.PORT !== undefined;
 }
 

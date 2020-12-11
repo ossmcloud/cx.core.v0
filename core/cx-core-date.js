@@ -181,7 +181,6 @@ function _formatEx(options) {
 
 
 function _parse(options) {
-    // TODO:
     var dateParts = options.split('-');
     return new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
 }
