@@ -1,7 +1,7 @@
 {
   "name": "cx-core",
   "version": "1.0.0",
-  "description": "",
+  "description": "General purpose library for Connections cloud.",
   "main": "app-cx-core.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,5 @@
     "url": "https://github.com/ossmcloud/cx.core.v0/issues"
   },
   "homepage": "https://github.com/ossmcloud/cx.core.v0#readme",
-  "dependencies": {
-    "mssql": "^6.2.0"
-  }
+  "dependencies": {}
 }
