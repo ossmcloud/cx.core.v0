@@ -1,5 +1,8 @@
 'use strict'
 
+const _monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const _weekDayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 class TimeSpan {
     #ms = null;
     constructor(milliseconds) {
@@ -66,72 +69,7 @@ class TimeSpan {
 
 }
 
-/*
-function TimeSpan(milliseconds) {
-    var _ms = milliseconds || 0;
-    this.milliseconds = null;
-    Object.defineProperty(this, 'milliseconds', {
-        get: function () {
-            return parseInt(_ms);
-        },
-        set: function (value) {
-            _ms = parseInt(value);
-        }
-    });
 
-    this.seconds = null;        // this is for intelli-sense purposes
-    Object.defineProperty(this, 'seconds', {
-        get: function () {
-            return parseFloat(this.milliseconds) / 1000;
-        },
-        set: function (value) {
-            this.milliseconds = parseInt(value * 1000);
-        }
-    });
-
-    this.minutes = null;        // this is for intelli-sense purposes
-    Object.defineProperty(this, 'minutes', {
-        get: function () {
-            return parseFloat(this.seconds) / 60;
-        },
-        set: function (value) {
-            this.seconds = parseFloat(value * 60);
-        }
-    });
-
-    this.hours = null;        // this is for intelli-sense purposes
-    Object.defineProperty(this, 'hours', {
-        get: function () {
-            return parseFloat(this.minutes) / 60;
-        },
-        set: function (value) {
-            this.minutes = parseFloat(value * 60);
-        }
-    });
-
-    this.days = null;        // this is for intelli-sense purposes
-    Object.defineProperty(this, 'days', {
-        get: function () {
-            return parseFloat(this.hours) / 24;
-        },
-        set: function (value) {
-            this.hours = parseFloat(value * 24);
-        }
-    });
-
-
-    this.toString = function () {
-        if (this.minutes < 1) {
-            return this.seconds.toFixed(0) + ' seconds ago...';
-        } else {
-            var m = Math.floor(this.minutes);
-            var s = this.seconds - (m * 60);
-            if (s >= 60) { s = 0; m += 1; }
-            return m.toFixed(0) + ' minutes and ' + s.toFixed(0) + ' seconds ago...';
-        }
-    }
-}
-*/
 
 function _format(options) {
     if (options === null || options == undefined) { options = {}; }
@@ -199,6 +137,7 @@ module.exports = {
 
     parseEx: _parse,
 
+    
 
     TimeSpan: TimeSpan
 }
