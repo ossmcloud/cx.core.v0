@@ -25,10 +25,12 @@ function getAllKeys(obj, depth) {
     if (!depth) { depth = 0; }
     var o = obj;
     var props = [];
-    for (var c = 0; c <= depth; c++) {
-        if (o.constructor === Object) { break; }
-        Object.getOwnPropertyNames(o).forEach(p => props.push(p));
-        o = Object.getPrototypeOf(o);
+    if (o) {
+        for (var c = 0; c <= depth; c++) {
+            Object.getOwnPropertyNames(o).forEach(p => props.push(p));
+            if (o.constructor === Object) { break; }
+            o = Object.getPrototypeOf(o);
+        }
     }
     return props;
 }
