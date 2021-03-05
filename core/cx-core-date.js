@@ -1,7 +1,10 @@
 'use strict'
 
+const _core = require('./cx-core');
+
 const _monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 const _weekDayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+
 
 class TimeSpan {
     #ms = null;
@@ -67,6 +70,62 @@ class TimeSpan {
     }   
 
 
+}
+
+class CxDate {
+    #o = null;
+    #d = null;
+    #dRaw = null;
+    constructor(options) {
+        if (!options) { options = { date: new Date() } }
+        
+        if (_core.isObj(options)) {
+            this.setDates(options.date);
+        } else {
+            this.setDates(options);
+            options = { date: options };
+        }
+
+        this.#o = options;
+       
+    }
+
+    get date() {
+        return this.#d
+    } set date(value) {
+        if (value.constructor.name !== 'Date') { throw new Error(`Invalid value passed [${value}], must be a Date object!`); }
+        this.setDates(value);
+    }
+
+    get dateRaw() {
+        return this.#dRaw
+    } set dateRaw(value) {
+        if (value.constructor.name !== 'String') { throw new Error(`Invalid value passed [${value}], must be a String object!`); }
+        this.setDates(value);
+    }
+
+    get month() {
+        return this.date.getMonth() + 1;
+    }
+
+    get year() {
+        return this.date.getFullYear();
+    }
+
+
+    setDates(value) {
+        if (!value) { throw new Error(`Invalid CxDate setDates value cannot be null or empty`);}
+        if (value.constructor.name === 'Date') {
+            this.#d = value;
+            this.#dRaw = _formatEx({ date: value, showTime: this.#o.showTime });
+        } else if (value.constructor.name === 'String') {
+            this.#dRaw = value;
+            this.#d = _parse(value);
+        } else {
+            throw new Error(`Invalid CxDate setDates value [${value}]`);
+        }
+    }
+    
 }
 
 
@@ -139,7 +198,8 @@ module.exports = {
 
     
 
-    TimeSpan: TimeSpan
+    TimeSpan: TimeSpan,
+    CxDate: CxDate
 }
 
 Date.prototype.hasTime = function () {
