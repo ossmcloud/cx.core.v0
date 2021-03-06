@@ -12,18 +12,24 @@ function toArray(object) {
     return [object];
 }
 
-function findInArray(array, keyName, keyValue, throwError) {
+function findInArray(array, keyName, keyValue, throwError, returnIndex) {
     var item = null;
     each(array, function (a, idx) {
         if (a[keyName] == undefined) { throw new Error('Array item does not have property: ' + keyName); }
         if (a[keyName] === keyValue) {
             item = array[idx];
+            if (returnIndex) { item = idx; }
             return false;
         }
         return true;
     });
     if (item == null && throwError) { throw new Error('Cannot find item in iterable [key]:' + keyName + ' using [keyValue]: ' + keyValue); }
     return item;
+}
+function removeFromArray(array, keyName, keyValue, throwError) {
+    var idx = findInArray(array, keyName, keyValue, throwError, true);
+    if (idx <= 0) { return; }
+    array.splice(idx, 1);
 }
 
 function sortArray(array, fieldName, isString, descending) {
@@ -81,6 +87,7 @@ module.exports = {
 
     toArray: toArray,
     findInArray: findInArray,
+    removeFromArray: removeFromArray,
     sortArray: sortArray,
 
 
