@@ -208,6 +208,7 @@ Date.prototype.hasTime = function () {
 }
 Date.prototype.dropTime = function () {
     this.setHours(0, 0, 0, 0);
+    return this;
 }
 Date.prototype.addMinutes = function (minsCount) {
     var value = this.getTime();
