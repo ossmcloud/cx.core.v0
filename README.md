@@ -3,6 +3,8 @@ General purpose library for Connections cloud.
 
 ---
 
+
+
 ## basic use
 ```
 const _core = require('cx-core');
