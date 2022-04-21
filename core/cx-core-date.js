@@ -267,7 +267,7 @@ Date.prototype.getDaysInMonth = function () {
 Date.prototype.now = function () {
     return new Date();
 }
-Date.today = function () {
+Date.prototype.today = function () {
     var today = new Date();
     return new Date(today.getFullYear(), today.getMonth(), today.getDate());
 }
