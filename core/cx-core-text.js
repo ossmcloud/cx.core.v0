@@ -14,6 +14,12 @@ function decodeBase64String(base64String) {
     return buff.toString('ascii');
 }
 
+function encodeBase64String(str) {
+    if (!str) { str = ''; }
+    var buff = Buffer.from(str, 'utf8');
+    return buff.toString('base64');
+}
+
 function bytesToString(bytes) {
     var buffer = Buffer.from(bytes);
     return buffer.toString('utf-8');
@@ -23,8 +29,13 @@ function bytesToString(bytes) {
 
 module.exports = {
     trimRight: trimRight,
-    decodeBase64String: decodeBase64String,
     bytesToString: bytesToString,
+
+    decodeBase64String: decodeBase64String,
+    encodeBase64String: encodeBase64String,
+
+    toBase64: encodeBase64String,
+    fromBase64: decodeBase64String
 }
 
 String.prototype.replaceAll = function (search, replacement) {

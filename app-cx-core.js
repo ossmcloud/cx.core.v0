@@ -13,4 +13,5 @@ _core.date = _core_date;
 _core.errors = _errors;
 _core.colors = _core_color;
 
+
 module.exports = _core;
