@@ -64,6 +64,15 @@ function eachEx(t, iterable, callback) {
     }
 }
 
+async function eachAsync(iterable, callback) {
+    if (!callback) { return; }
+    for (var idx = 0; idx < iterable.length; idx++) {
+        var res = await callback(iterable[idx], idx);
+        if (res === false) { return false; }
+    }
+}
+
+
 function eachProp(object, callback) {
     if (!callback) { return; }
     for (const key in object) {
@@ -90,5 +99,5 @@ module.exports = {
     removeFromArray: removeFromArray,
     sortArray: sortArray,
 
-
+    eachAsync: eachAsync
 }
