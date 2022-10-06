@@ -3,6 +3,7 @@
 const _core = require('./cx-core');
 
 const _monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+//const _monthShortNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 const _weekDayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 
 
@@ -196,7 +197,11 @@ module.exports = {
 
     parseEx: _parse,
 
-    
+    monthName: function (month, short) {
+        if (month < 0 || month > 11) { return 'Invalid Month'; }
+        if (short) { return _monthNames[month].substring(0, 3); }
+        return _monthNames[month];
+    },
 
     TimeSpan: TimeSpan,
     CxDate: CxDate
