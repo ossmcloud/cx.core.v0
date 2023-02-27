@@ -54,3 +54,9 @@ Number.prototype.formatNumber = function (decimals, dec_point, thousands_sep) {
     var target = this;
     return formatNumber(this, decimals, dec_point, thousands_sep);
 }
+
+Number.prototype.roundNumber = function (decimals) {
+    if (decimals == undefined) { decimals = 2; }
+    var factor = 10 ** decimals;
+    return Math.round(this * factor) / factor;
+}
