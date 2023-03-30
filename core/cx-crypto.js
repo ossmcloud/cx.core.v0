@@ -37,7 +37,7 @@ function calculateSpecialMicrosoftHash(hashMissingLastIteration, counter, hashAl
     // Note: The PasswordDeriveBytes algorithm converts each character to utf-16 and then drops the second byte.
     const prefixCalculatedByCounter = Buffer.from(counter.toString(), "utf-8")
     const inputForAdditionalHashIteration = Buffer.concat([prefixCalculatedByCounter, hashMissingLastIteration])
-    return crypto.createHash(hashAlgorithm).update(inputForAdditionalHashIteration).digest()
+    return _crypto.createHash(hashAlgorithm).update(inputForAdditionalHashIteration).digest()
 }
 
 function Aes() {
