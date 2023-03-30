@@ -49,7 +49,7 @@ function Aes() {
             var key = deriveBytesFromPassword(pass, new Uint8Array(), 100, 'sha1', 32);
             key = _cryptoJS.lib.WordArray.create(key);
 
-            var encrypted = _cryptoJS.AES.encrypt(msg, key2, {
+            var encrypted = _cryptoJS.AES.encrypt(msg, key, {
                 iv: _iv,
                 mode: _cryptoJS.mode.CBC,
                 padding: _cryptoJS.pad.Pkcs7,
