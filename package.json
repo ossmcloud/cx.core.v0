@@ -16,5 +16,7 @@
     "url": "https://github.com/ossmcloud/cx.core.v0/issues"
   },
   "homepage": "https://github.com/ossmcloud/cx.core.v0#readme",
-  "dependencies": {}
+  "dependencies": {
+    "crypto-js": "^4.1.1"
+  }
 }
