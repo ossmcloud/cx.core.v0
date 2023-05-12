@@ -45,28 +45,32 @@ class TimeSpan {
     }
 
     toString() {
-        if (this.minutes < 1) {
-            return this.seconds.toFixed(0) + 's';
-        } else if (this.minutes < 60) {
-            var m = Math.floor(this.minutes);
-            var s = this.seconds - (m * 60);
+        if (Math.abs(this.minutes) < 1) {
+            return Math.abs(this.seconds).toFixed(0) + 's';
+        } else if (Math.abs(this.minutes) < 60) {
+            var m = Math.floor(Math.abs(this.minutes));
+            var s = Math.abs(this.seconds) - (m * 60);
             if (s >= 60) { s = 0; m += 1; }
             return m.toFixed(0) + 'm ' + s.toFixed(0) + 's';
-        } else if (this.hours < 24) {
-            var h = Math.floor(this.hours);
-            var m = this.minutes - (h * 60);
-            var s = this.seconds - (h * 60 * 60);
+        } else if (Math.abs(this.hours) < 24) {
+            var h = Math.floor(Math.abs(this.hours));
+            var m = Math.abs(this.minutes) - (h * 60);
+            var s = Math.abs(this.seconds) - (h * 60 * 60);
             if (s >= 60) { s = 0; m += 1; }
-            return h.toFixed(0) + 'h ' + m.toFixed(0) + 'm ' + s.toFixed(0) + 's';
-        } else if (this.days < 8) {
-            var d = Math.floor(this.days);
-            var h = this.hours - (d * 24);
-            var m = this.minutes - (d * 24 * 60);
-            var s = this.seconds - (d * 24 * 60 * 60);
+            if (s > 0) {
+                return h.toFixed(0) + 'h ' + m.toFixed(0) + 'm ' + s.toFixed(0) + 's';
+            } else {
+                return h.toFixed(0) + 'h ' + m.toFixed(0) + 'm ';
+            }
+        } else if (Math.abs(this.days) < 8) {
+            var d = Math.floor(Math.abs(this.days));
+            var h = Math.abs(this.hours) - (d * 24);
+            var m = Math.abs(this.minutes) - (d * 24 * 60);
+            var s = Math.abs(this.seconds) - (d * 24 * 60 * 60);
             if (s >= 60) { s = 0; m += 1; }
             return d.toFixed(0) + 'd ' + h.toFixed(0) + 'h ' + m.toFixed(0) + 'm ' + s.toFixed(0) + 's';
         } else {
-            return 'over ' + Math.floor(this.days).toFixed(0) + ' days';
+            return 'over ' + Math.floor(Math.abs(this.days)).toFixed(0) + ' days';
         }
     }   
 
@@ -207,6 +211,9 @@ module.exports = {
     CxDate: CxDate
 }
 
+Date.prototype.toNow = function () {
+    return new TimeSpan(new Date() - this);
+}
 Date.prototype.format = function (options) {
     if (!options) { options = {}; }
     options.date = this;
@@ -219,6 +226,11 @@ Date.prototype.hasTime = function () {
 Date.prototype.dropTime = function () {
     this.setHours(0, 0, 0, 0);
     return this;
+}
+Date.prototype.addSeconds = function (secsCount) {
+    var value = this.getTime();
+    value += (secsCount * 1000);
+    return new Date(value);
 }
 Date.prototype.addMinutes = function (minsCount) {
     var value = this.getTime();
