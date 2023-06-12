@@ -26,6 +26,28 @@ function bytesToString(bytes) {
 }
 
 
+function fromCamelCase(camelCasingString) {
+    if (!camelCasingString) { return ''; }
+    camelCasingString = camelCasingString.replaceAll('_', ' ').trim();
+
+    
+    var parsedString = camelCasingString[0].toLowerCase();
+    for (var cx = 1; cx < camelCasingString.length; cx++) {
+        
+        if (camelCasingString[cx].toUpperCase() == camelCasingString[cx]) {
+            // check if prev letter is upper case
+            if (camelCasingString[cx - 1].toUpperCase() == camelCasingString[cx - 1]) {
+                // do nothing
+            } else {
+                // if not we separate
+                parsedString += ' ';
+            }
+        }
+        parsedString += camelCasingString[cx].toLowerCase();
+    }
+    return parsedString;
+}
+
 
 module.exports = {
     trimRight: trimRight,
@@ -35,10 +57,15 @@ module.exports = {
     encodeBase64String: encodeBase64String,
 
     toBase64: encodeBase64String,
-    fromBase64: decodeBase64String
+    fromBase64: decodeBase64String,
+
+    fromCamelCase: fromCamelCase,
 }
 
 String.prototype.replaceAll = function (search, replacement) {
     var target = this;
     return target.split(search).join(replacement);
+}
+String.prototype.fromCamelCase = function () {
+    return fromCamelCase(this);
 }
