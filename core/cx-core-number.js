@@ -60,3 +60,10 @@ Number.prototype.roundNumber = function (decimals) {
     var factor = 10 ** decimals;
     return Math.round(this * factor) / factor;
 }
+
+Number.prototype.pad = function (size, char) {
+    if (char == undefined) { char = "0"; }
+    var s = String(this);
+    while (s.length < (size || 2)) { s = char + s; }
+    return s.substring(0, size);
+}
