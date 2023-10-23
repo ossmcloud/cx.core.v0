@@ -15,5 +15,4 @@ _core.number = _core_number;
 _core.errors = _errors;
 _core.colors = _core_color;
 
-
 module.exports = _core;

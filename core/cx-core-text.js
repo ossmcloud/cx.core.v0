@@ -69,3 +69,17 @@ String.prototype.replaceAll = function (search, replacement) {
 String.prototype.fromCamelCase = function () {
     return fromCamelCase(this);
 }
+
+String.prototype.pad = function (size, char) {
+    if (char == undefined) { char = " "; }
+    var s = String(this);
+    while (s.length < (size || 2)) { s = s + char; }
+    return s.substring(0, size);
+}
+
+String.prototype.padLeft = function (size, char) {
+    if (char == undefined) { char = " "; }
+    var s = String(this);
+    while (s.length < (size || 2)) { s = char + s; }
+    return s.substring(0, size);
+}

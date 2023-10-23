@@ -219,6 +219,11 @@ Date.prototype.format = function (options) {
     options.date = this;
     return _format(options);
 }
+Date.prototype.formatEx = function (options) {
+    if (!options) { options = {}; }
+    options.date = this;
+    return _formatEx(options);
+}
 Date.prototype.hasTime = function () {
     var t = ((this.getHours() + this.getMinutes() + this.getSeconds() + this.getMilliseconds()));
     return (t != 0 && t != 1);
