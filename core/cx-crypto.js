@@ -43,7 +43,32 @@ function calculateSpecialMicrosoftHash(hashMissingLastIteration, counter, hashAl
 function Aes() {
     const _iv = _cryptoJS.enc.Utf8.parse('tu89geji340t89u2');
 
+    function generateCodeChallenge(code_verifier) {
+        return base64URL(_cryptoJS.SHA256(code_verifier))
+    }
+    function base64URL(string) {
+        return string.toString(_cryptoJS.enc.Base64).replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_')
+    }
+
+    function generateCodeVerifier() {
+        var chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.-_~'
+        // roughly between 43 and 128
+        var length = Math.floor(Math.random() * 80) + 44;
+        var codeVerifier = '';
+        for (var l = 0; l < length; l++){
+            codeVerifier += chars[Math.floor(Math.random() * chars.length)];
+        }
+        return codeVerifier;
+    }
+
     return {
+        generateCodeVerifier: generateCodeVerifier,
+        generateCodeChallenge: generateCodeChallenge,
+
+        SHA256: function (text) {
+            return _cryptoJS.SHA256(text);
+        },
+
         encrypt: function (text, pass, returnObject) {
             const msg = _cryptoJS.enc.Utf8.parse(text);
             var key = deriveBytesFromPassword(pass, new Uint8Array(), 100, 'sha1', 32);
