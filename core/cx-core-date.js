@@ -207,6 +207,11 @@ module.exports = {
         return _monthNames[month];
     },
 
+    monthStart: function () {
+        var d = new Date();
+        return new Date(d.getFullYear(), d.getMonth(), 1);
+    },
+
     TimeSpan: TimeSpan,
     CxDate: CxDate
 }
