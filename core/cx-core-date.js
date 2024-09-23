@@ -187,6 +187,26 @@ function _parse(options) {
     return new Date(parseInt(dateParts[0]), parseInt(dateParts[1]) - 1, parseInt(dateParts[2]));
 }
 
+function _parseWeekNo(weekNo) {
+    if (!weekNo) {
+        var now = new Date();
+        return `${now.getFullYear()}-${now.getWeekNumber().toString().padLeft(2, '0')}`;
+    }
+    if (weekNo.indexOf('-') > 0) {
+        var weekNoParts = weekNo.split('-');
+        if (weekNoParts[0].length == 2) { weekNoParts[0] = '20' + weekNoParts[0]; }
+        weekNoParts[1] = weekNoParts[1].padLeft(2, '0');
+        weekNo = `${weekNoParts[0]}-${weekNoParts[1]}`;
+    } else if (weekNo.length <= 2) {
+        weekNo = _core.date.now().getFullYear() + '-' + weekNo.padLeft(2, '0');
+    } else if (weekNo.length <= 4) {
+        weekNo = `20${weekNo.substring(0, 2)}-${weekNo.substring(2).padLeft(2, '0')}`;
+    } else {
+        weekNo = `${weekNo.substring(0, 4)}-${weekNo.substring(4).padLeft(2, '0')}`;
+    }
+    return weekNo;
+}
+
 
 module.exports = {
     now: function () {
@@ -200,6 +220,7 @@ module.exports = {
     formatEx: _formatEx,
 
     parseEx: _parse,
+    parseWeekNo: _parseWeekNo,
 
     monthName: function (month, short) {
         if (month < 0 || month > 11) { return 'Invalid Month'; }
