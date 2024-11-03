@@ -276,7 +276,15 @@ Date.prototype.addHours = function (hoursCount) {
 Date.prototype.addDays = function (daysCount) {
     var value = this.valueOf();
     value += 86400000 * daysCount;
-    return new Date(value);
+    var newDate = new Date(value);
+    if (newDate.getDate() == this.getDate() && newDate.getMonth() == this.getMonth() && newDate.getFullYear() == this.getFullYear()) {
+        if (daysCount > 0) {
+            return newDate.addHours(1);
+        } else {
+            return newDate.addHours(-1);
+        }
+    }
+    return newDate;
 }
 Date.prototype.addWeeks = function (weeksCount, excludeLastDay) {
     var value = this.valueOf();
