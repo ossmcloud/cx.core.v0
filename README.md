@@ -1,5 +1,5 @@
 # cx.core (general purpose library)
-General purpose library for Connections cloud.
+General purpose library for Sruu cloud.
 
 ---
 
