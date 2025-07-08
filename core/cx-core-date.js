@@ -325,14 +325,14 @@ Date.prototype.getDaysInMonth = function () {
     return this.getDaysInMonthDays(this.getFullYear(), this.getMonth());
 }
 
-Date.prototype.now = function () {
+Date.now = function () {
     return new Date();
 }
-Date.prototype.today = function () {
+Date.today = function () {
     var today = new Date();
     return new Date(today.getFullYear(), today.getMonth(), today.getDate());
 }
-Date.prototype.getWeekNumber = function () {
+Date.getWeekNumber = function () {
     var d = new Date(Date.UTC(this.getFullYear(), this.getMonth(), this.getDate()));
     var dayNum = d.getUTCDay() || 7;
     d.setUTCDate(d.getUTCDate() + 4 - dayNum);
