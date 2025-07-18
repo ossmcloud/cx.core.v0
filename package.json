@@ -1,7 +1,7 @@
 {
   "name": "cx-core",
   "version": "1.0.0",
-  "description": "General purpose library for Sruu cloud.",
+  "description": "General purpose library for sruu cloud.",
   "main": "app-cx-core.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
