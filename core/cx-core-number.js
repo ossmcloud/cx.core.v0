@@ -25,7 +25,6 @@ function formatNumber(number, decimals, dec_point, thousands_sep) {
         s[1] += new Array(prec - s[1].length + 1).join('0');
     }
     var ret = s.join(dec);
-    console.log(ret);
     return ret;
 }
 function formatMoney(number, c, d, t) {

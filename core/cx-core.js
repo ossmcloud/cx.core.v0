@@ -17,7 +17,8 @@ function isFunction(object) {
 }
 
 function isObject(object) {
-    if (object === null) { return false; }
+    if (object === null || object === undefined) { return false; }
+    if (object.constructor.name == 'Date') { return false; }
     return ((typeof object === 'function') || (typeof object === 'object'));
 }
 
@@ -69,8 +70,22 @@ function classToObject(c) {
     var propertyNames = getClassMethodNames(c);
     for (var px = 0; px < propertyNames.length; px++) {
         var k = propertyNames[px];
+        if (k == 'cx' || k == 'db') { continue; }
+        if (k == 'fields') {
+            k = k;
+        }
+
         if (isObject(c[k])) {
-            o[k] = classToObject(c[k]);
+            if (c[k]?.constructor.name == 'Object') {
+                o[k] = {}
+                for (var kk in c[k]) {
+                    o[k][kk] = classToObject(c[k][kk]);
+                }
+            } else {
+                o[k] = classToObject(c[k]);
+            }
+
+
         } else if (Array.isArray(c[k])) {
             o[k] = [];
             for (var x = 0; x < c[k].length; x++) {
@@ -86,7 +101,7 @@ function classToObject(c) {
 function arrayToObject(a) {
     if (!a) { return null; }
     var res = [];
-    for (var ax = 0; ax < a.length; ax++){
+    for (var ax = 0; ax < a.length; ax++) {
         res.push(classToObject(a[ax]));
     }
     return res;
